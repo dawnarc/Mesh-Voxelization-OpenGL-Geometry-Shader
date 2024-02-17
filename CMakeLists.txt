@@ -4,15 +4,12 @@ project(SD)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 
 # dependencies
+find_package( OpenGL REQUIRED )
+
 find_package(GLFW3 REQUIRED)
 include_directories(${GLFW3_INCLUDE_DIR})
 message(STATUS "GLFW3 included at: ${GLFW3_INCLUDE_DIR}")
 message(STATUS "GLFW3 library dir: ${GLFW3_LIBRARY}")
-
-if(UNIX)
-	find_package(OpenGL REQUIRED)
-	include_directories(${OpenGL_INCLUDE_DIRS})
-endif(UNIX)
 
 find_package(GLEW REQUIRED)
 include_directories(${GLEW_INCLUDE_DIRS})
@@ -38,9 +35,4 @@ set(SOURCE_FILES_H src/OpenGLHelper.h src/CameraHelper.h src/tinyply.h)
 
 add_executable(main src/main.cpp ${SOURCE_FILES_CPP} ${SOURCE_FILES_H})
 
-if(WIN32)
-	target_link_libraries(main opengl32 ${GLEW_LIBRARY} ${GLFW3_LIBRARY})
-else()
-	target_link_libraries(main glfw GL GLEW)
-endif(WIN32)
-
+target_link_libraries(main ${OPENGL_gl_LIBRARY} ${GLEW_LIBRARY} ${GLFW3_LIBRARY})
