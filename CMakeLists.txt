@@ -5,23 +5,24 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 
 # dependencies
 find_package( OpenGL REQUIRED )
+include_directories( ${OpenGL_INCLUDE_DIRS} )
 
-find_package(GLFW3 REQUIRED)
-include_directories(${GLFW3_INCLUDE_DIR})
+find_package( GLFW3 REQUIRED )
+include_directories( ${GLFW3_INCLUDE_DIR} )
 message(STATUS "GLFW3 included at: ${GLFW3_INCLUDE_DIR}")
 message(STATUS "GLFW3 library dir: ${GLFW3_LIBRARY}")
 
-find_package(GLEW REQUIRED)
-include_directories(${GLEW_INCLUDE_DIRS})
+find_package( GLEW REQUIRED )
+include_directories( ${GLEW_INCLUDE_DIRS} )
 message(STATUS "GLEW included at: ${GLEW_INCLUDE_DIRS}")
 message(STATUS "GLEW library dir: ${GLEW_LIBRARY}")
 
-find_package(Eigen3 REQUIRED)
-include_directories(${Eigen3_INCLUDE_DIR})
+find_package( Eigen3 REQUIRED )
+include_directories( ${Eigen3_INCLUDE_DIR} )
 message(STATUS "Eigen3 included at: ${Eigen3_INCLUDE_DIR}")
 
-find_package(GLM REQUIRED)
-include_directories(${GLM_INCLUDE_DIR})
+find_package( GLM REQUIRED )
+include_directories( ${GLM_INCLUDE_DIR} )
 message(STATUS "GLM included at: ${GLM_INCLUDE_DIR}")
 
 if(UNIX)
