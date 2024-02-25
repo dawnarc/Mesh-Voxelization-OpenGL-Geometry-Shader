@@ -83,7 +83,9 @@ namespace oglh {
 	            throw std::runtime_error("glfwOpenWindow failed. Can your hardware handle OpenGL 4.5?");
 	
 	        glfwMakeContextCurrent(*window);
-	        
+	        //limit frame rate to the screen refresh rate to save performance
+	        glfwSwapInterval(1);
+
 			if (glewInit() != GLEW_OK)
 	            throw std::runtime_error("glewInit failed\n");
 	
