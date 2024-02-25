@@ -19,6 +19,12 @@ set( _GLM_HEADER_SEARCH_DIRS
 "${CMAKE_SOURCE_DIR}/includes"
 "C:/Program Files (x86)/glm/include" )
 
+set( _GLM_LIB_SEARCH_DIRS
+"/usr/lib"
+"/usr/local/lib"
+"${CMAKE_SOURCE_DIR}/lib"
+"C:/Program Files (x86)/glm/lib" )
+
 # Check environment for root search directory
 set( _GLM_ENV_ROOT $ENV{GLM_ROOT} )
 if( NOT GLM_ROOT AND _GLM_ENV_ROOT )
@@ -28,8 +34,16 @@ endif()
 # Put user specified location at beginning of search
 if( GLM_ROOT )
 	list( INSERT _GLM_HEADER_SEARCH_DIRS 0 "${GLM_ROOT}/include" )
+	list( INSERT _GLM_LIB_SEARCH_DIRS 0 "${GLM_ROOT}/lib" )
 endif()
 
 # Search for the header
 FIND_PATH(GLM_INCLUDE_DIR "glm/glm.hpp"
 PATHS ${_GLM_HEADER_SEARCH_DIRS} )
+
+# Search for the library
+FIND_LIBRARY(GLM_LIBRARY NAMES glm
+PATHS ${_GLM_LIB_SEARCH_DIRS} )
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(GLM DEFAULT_MSG
+GLM_LIBRARY GLM_INCLUDE_DIR)
