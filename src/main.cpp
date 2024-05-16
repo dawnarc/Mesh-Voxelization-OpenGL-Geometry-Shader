@@ -30,8 +30,8 @@ struct InputArgs {
 } input_args;
 
 struct Mesh {
-	Eigen::Matrix<float, -1, -1> V;
-	Eigen::Matrix<uint32_t, -1, -1> F;
+	Eigen::Matrix<float, -1, -1> V;		// vertex position
+	Eigen::Matrix<uint32_t, -1, -1> F;	// triangle index
 };
 
 
